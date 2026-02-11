@@ -12,8 +12,8 @@ struct BackgroundView: View {
     var body: some View {
         LinearGradient(
             colors: [
-                Color(red: 0.90, green: 0.95, blue: 1.0), // Soft Blue
-                Color(red: 0.95, green: 1.0, blue: 0.95)  // Mint
+                Color(red: 1.0, green: 0.1, blue: 0.1), // Bright Red
+                Color.white
             ],
             startPoint: .topLeading,
             endPoint: .bottomTrailing
@@ -28,20 +28,22 @@ struct HeaderView: View {
             HStack {
                 Text("Good Morning")
                     .font(.system(.title2, design: .rounded))
-                    .foregroundColor(.secondary)
+                    .fontWeight(.bold)
+                    .foregroundColor(.primary)
                 Spacer()
                 Image(systemName: "xmark.circle.fill")
                     .font(.title2)
-                    .foregroundColor(.gray.opacity(0.3))
+                    .foregroundColor(.secondary)
             }
             
             Text("I Am There For You")
                 .font(.system(.largeTitle, design: .rounded))
-                .fontWeight(.bold)
+                .fontWeight(.black)
                 .foregroundColor(.primary)
             
             Text("How are you feeling?")
                 .font(.system(.headline, design: .rounded))
+                .fontWeight(.bold)
                 .foregroundColor(.secondary)
                 .padding(.top, 4)
         }
@@ -54,34 +56,37 @@ struct FeatureCardView: View {
     let card: WellnessCard
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 10) {
+        VStack(alignment: .leading, spacing: 12) {
             Image(systemName: card.icon)
-                .font(.system(size: 24))
+                .font(.system(size: 28))
                 .foregroundStyle(.linearGradient(colors: card.gradientColors, startPoint: .topLeading, endPoint: .bottomTrailing))
-                .padding(10)
-                .background(card.gradientColors.first?.opacity(0.12))
+                .padding(12)
+                .background(card.gradientColors.first?.opacity(0.15))
                 .clipShape(Circle())
             
-            VStack(alignment: .leading, spacing: 2) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(card.title)
-                    .font(.system(.subheadline, design: .rounded))
-                    .fontWeight(.bold)
+                    .font(.system(.headline, design: .rounded))
+                    .fontWeight(.black)
+                    .foregroundColor(.primary)
                 
                 Text(card.description)
                     .font(.system(.caption, design: .rounded))
+                    .fontWeight(.bold)
                     .foregroundColor(.secondary)
                     .lineLimit(2)
             }
         }
-        .padding(16)
-        .frame(width: 150, height: 160, alignment: .topLeading)
+        .padding(18)
+        .frame(width: 160, height: 170, alignment: .topLeading)
         .background(
-            RoundedRectangle(cornerRadius: 22, style: .continuous)
-                .fill(.white.opacity(0.8))
-                .background(.ultraThinMaterial)
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .fill(Color.white)
         )
-        .clipShape(RoundedRectangle(cornerRadius: 22, style: .continuous))
-        .shadow(color: Color.black.opacity(0.03), radius: 8, x: 0, y: 4)
+        .overlay(
+            RoundedRectangle(cornerRadius: 24, style: .continuous)
+                .stroke(LinearGradient(colors: card.gradientColors.map { $0.opacity(0.3) }, startPoint: .topLeading, endPoint: .bottomTrailing), lineWidth: 1)
+        )
     }
 }
 

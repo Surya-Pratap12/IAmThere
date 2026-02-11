@@ -4,9 +4,9 @@ struct AboutAndSafetyView: View {
     var body: some View {
         ZStack {
             LinearGradient(
-                colors: [Color(red: 1.0, green: 0.7, blue: 0.3), Color(red: 1.0, green: 0.5, blue: 0.1)],
-                startPoint: .topLeading,
-                endPoint: .bottomTrailing
+                colors: [Color.white, Color(red: 1.0, green: 0.7, blue: 0.3)],
+                startPoint: .top,
+                endPoint: .bottom
             )
             .ignoresSafeArea()
             
@@ -15,19 +15,20 @@ struct AboutAndSafetyView: View {
                 
                 Image(systemName: "shield.lefthalf.filled")
                     .font(.system(size: 100))
-                    .foregroundStyle(.white)
+                    .foregroundStyle(Color(red: 1.0, green: 0.5, blue: 0.1))
                     .shadow(color: .black.opacity(0.1), radius: 10, x: 0, y: 5)
                 
                 VStack(spacing: 12) {
                     Text("About & Safety")
                         .font(.system(.largeTitle, design: .rounded))
                         .fontWeight(.bold)
-                        .foregroundColor(.white)
+                        .foregroundColor(.black)
                     
                     Text("Your privacy is our priority. Explore our safety guidelines and commitment to you.")
                         .font(.system(.body, design: .rounded))
+                        .fontWeight(.semibold)
                         .multilineTextAlignment(.center)
-                        .foregroundColor(.white.opacity(0.9))
+                        .foregroundColor(.black)
                         .padding(.horizontal, 40)
                 }
                 
